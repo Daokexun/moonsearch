@@ -1,10 +1,10 @@
-name = "username/moonsearch"
+name = "Daokexun/moonsearch"
 
 version = "0.1.0"
 
 readme = "README.md"
 
-repository = "https://github.com/username/moonsearch"
+repository = "https://github.com/Daokexun/moonsearch"
 
 license = "Apache-2.0"
 

@@ -1,5 +1,5 @@
 import {
-  "username/moonsearch" @lib,
+  "Daokexun/moonsearch" @lib,
 }
 
 pkgtype(kind: "executable")

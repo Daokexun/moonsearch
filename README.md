@@ -39,7 +39,7 @@ moonsearch/
 ## Quickstart
 
 ```moonbit
-import "username/moonsearch" as search
+import "Daokexun/moonsearch" as search
 
 fn main {
   let engine = search::SearchEngine::new()
