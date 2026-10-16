@@ -9,7 +9,7 @@ pub struct InvertedIndex {
 ///|
 /// Creates a new empty InvertedIndex.
 pub fn InvertedIndex::new() -> InvertedIndex {
-  { docs: Map(), index: Map(), total_doc_length: 0 }
+  { docs: Map([]), index: Map([]), total_doc_length: 0 }
 }
 
 ///|
@@ -39,7 +39,7 @@ pub fn InvertedIndex::add_document(
   self.total_doc_length += doc.length
 
   let tokens = filter_stopwords(tokenize(doc.text))
-  let tf_map : Map[String, Int] = Map()
+  let tf_map : Map[String, Int] = Map([])
   for token in tokens {
     match tf_map.get(token) {
       Some(count) => tf_map.set(token, count + 1)
