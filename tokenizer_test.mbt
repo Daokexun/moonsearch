@@ -18,3 +18,13 @@ test "tokenize empty text" {
   let tokens = @moonsearch.tokenize("")
   assert_eq(tokens.length(), 0)
 }
+
+test "stopword filtering" {
+  let tokens = @moonsearch.tokenize("This is a fast search engine with MoonBit")
+  let filtered = @moonsearch.filter_stopwords(tokens)
+  assert_eq(filtered.length(), 4)
+  assert_eq(filtered[0], "fast")
+  assert_eq(filtered[1], "search")
+  assert_eq(filtered[2], "engine")
+  assert_eq(filtered[3], "moonbit")
+}
