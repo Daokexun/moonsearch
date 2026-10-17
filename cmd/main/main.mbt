@@ -1,8 +1,12 @@
 ///|
 /// Demonstration entry point for moonsearch engine.
 fn main {
-  println("=== MoonSearch Demo ===")
+  println("==================================================")
+  println("           MoonSearch Full-Text Engine            ")
+  println("==================================================")
 
+  // 1. 倒排索引与 BM25 检索演示
+  println("\n--- [1] Inverted Index & BM25 Relevance Scoring ---")
   let index = @lib.InvertedIndex::new()
 
   let doc1 = @lib.Document::new(
@@ -45,5 +49,34 @@ fn main {
     None => println("No documents found for '\{query_term}'")
   }
 
-  println("=== Demo Finished Successfully ===")
+  // 2. 前缀字典树与自动补全演示
+  println("\n--- [2] Prefix Trie & Auto-completion ---")
+  let trie = @lib.Trie::from_array([
+    "moon",
+    "moonbit",
+    "moonsearch",
+    "mooncake",
+    "memory",
+    "module",
+    "webassembly",
+  ])
+  println("Total words indexed in Trie: \{trie.length()}")
+  let suggestions = trie.suggest("moon", limit=3)
+  println("Auto-completion suggestions for prefix 'moon' (limit 3):")
+  for s in suggestions {
+    println("  - \{s}")
+  }
+
+  // 3. 模糊匹配与拼写纠错演示
+  println("\n--- [3] Levenshtein Distance & Fuzzy Match ---")
+  let typo_word = "serch"
+  let correct_target = "search"
+  let dist = @lib.levenshtein_distance(typo_word, correct_target)
+  let matched = @lib.is_fuzzy_match(typo_word, correct_target, 1)
+  println("Distance between '\{typo_word}' and '\{correct_target}': \{dist}")
+  println("Is fuzzy match within threshold 1: \{matched}")
+
+  println("\n==================================================")
+  println("=== All Engines & Demos Completed Successfully ===")
+  println("==================================================")
 }
